@@ -12,6 +12,7 @@
 #include <string.h>
 #include <signal.h>  /* signal name macros, and the kill() prototype */
 
+#define PORT 1025
 
 
 char *getFilename(char *);
@@ -33,10 +34,10 @@ int main(int argc, char *argv[])
     socklen_t clilen;
     struct sockaddr_in serv_addr, cli_addr;
 
-    if (argc < 2) {
-       fprintf(stderr,"ERROR, no port provided\n");
-       exit(1);
-    }
+    //if (argc < 2) {
+    //   fprintf(stderr,"ERROR, no port provided\n");
+    //   exit(1);
+    //}
 
     sockfd = socket(AF_INET, SOCK_STREAM, 0);  // create socket
     if (sockfd < 0)
@@ -45,10 +46,10 @@ int main(int argc, char *argv[])
     memset((char *) &serv_addr, 0, sizeof(serv_addr));   // reset memory
 
     // fill in address info
-    portno = atoi(argv[1]);
+    //portno = atoi(argv[1]);
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = INADDR_ANY;
-    serv_addr.sin_port = htons(portno);
+    serv_addr.sin_port = htons(PORT);
 
     if (bind(sockfd, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) < 0)
         error("ERROR on binding");
