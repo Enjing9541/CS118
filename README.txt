@@ -1,0 +1,1 @@
+The goal of the project is to build a webserver with BSD sockets so that the server can read and print the requested message from client and then return the requested file to client by showing the file content on browser.
